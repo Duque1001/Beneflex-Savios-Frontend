@@ -70,7 +70,7 @@ export function msalInstanceFactory() {
 // Config del guard: cómo autentica cuando entras a rutas protegidas
 export function msalGuardConfigFactory(): MsalGuardConfiguration {
   return {
-    interactionType: InteractionType.Redirect, // login por redirect
+    interactionType: InteractionType.Redirect,
     authRequest: {
       scopes: ['openid', 'profile', 'email'] // scopes básicos de identidad
     }
