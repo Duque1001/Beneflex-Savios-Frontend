@@ -1,0 +1,50 @@
+name: Deploy Backend (benefits-api) to Azure Web App
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "benefits-api/**"
+      - ".github/workflows/deploy-back.yml"
+
+env:
+  AZURE_WEBAPP_NAME: Beneflex-Savios-Backend
+  NODE_VERSION: "20"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+          cache-dependency-path: benefits-api/package-lock.json
+
+      - name: Install dependencies
+        working-directory: benefits-api
+        run: npm ci
+
+      - name: Build
+        working-directory: benefits-api
+        run: npm run build
+
+      # Empaqueta solo lo necesario para el deploy
+      - name: Prepare package
+        run: |
+          mkdir -p deploy
+          cp -R benefits-api/* deploy/
+          rm -rf deploy/node_modules
+        shell: bash
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: deploy
