@@ -1,5 +1,6 @@
-<<<<<<< HEAD
 # Beneflex-Savios-Frontend
-=======
-# Azure-Beneflex-Prueba
->>>>>>> 0e8cdd2 (Add backend and frontend structure)
+
+Proyecto monorepo:
+- beneflex-app (Angular - Frontend)
+- benefits-api (NestJS - Backend)
+
