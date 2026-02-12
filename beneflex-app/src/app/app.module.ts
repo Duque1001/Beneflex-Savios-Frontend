@@ -82,7 +82,8 @@ export function msalInterceptorConfigFactory(): MsalInterceptorConfiguration {
   const protectedResourceMap = new Map<string, Array<string>>();
 
   // Cuando la app llame a esta base URL, MSAL adjunta token
-  protectedResourceMap.set(environment.functionsApiBaseUrl, ['openid', 'profile', 'email']);
+  protectedResourceMap.set(`${environment.backendBaseUrl}/api`, ['openid', 'profile', 'email']);
+
 
   return {
     interactionType: InteractionType.Redirect,
