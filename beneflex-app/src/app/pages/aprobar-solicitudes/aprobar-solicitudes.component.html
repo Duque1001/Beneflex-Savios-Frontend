@@ -1,0 +1,128 @@
+<div class="approval-page">
+  <!-- Si existe una solicitud actual, muestra tarjeta; si no, muestra emptyState -->
+  <div class="card" *ngIf="current as req; else emptyState">
+    <!-- Ícono del beneficio -->
+    <div class="benefit-icon-wrap">
+      <img
+        *ngIf="iconSrcFor(req.benefitName) as src; else fallbackIcon"
+        class="benefit-icon"
+        [src]="src"
+        [alt]="req.benefitName"
+      />
+      <ng-template #fallbackIcon>📌</ng-template>
+    </div>
+
+    <!-- Navegación -->
+    <button
+      class="nav nav-left"
+      (click)="prev()"
+      [disabled]="isFirst || cargando"
+      aria-label="Anterior"
+    >
+      ‹
+    </button>
+
+    <button
+      class="nav nav-right"
+      (click)="next()"
+      [disabled]="isLast || cargando"
+      aria-label="Siguiente"
+    >
+      ›
+    </button>
+
+    <!-- Título -->
+    <h2 class="title">Solicitud de beneficio - {{ req.employeeName }}</h2>
+
+    <div class="section-title">Detalles de la solicitud</div>
+
+    <!-- Detalles -->
+    <div class="details">
+      <p><strong>Solicitante:</strong> {{ req.employeeName }}</p>
+      <p><strong>Beneficio:</strong> {{ req.benefitName }}</p>
+      <p><strong>Fecha/Desde:</strong> {{ req.startDateUI }}</p>
+      <p><strong>Días:</strong> {{ req.requestedDays ?? '—' }}</p>
+      <p><strong>Estado:</strong> {{ req.status }}</p>
+    </div>
+
+    <!-- Comentario -->
+    <textarea
+      class="comment"
+      [(ngModel)]="comentario"
+      [disabled]="cargando"
+      placeholder="Escriba comentarios u observaciones (Opcional)"
+      rows="4"
+    ></textarea>
+
+    <!-- Acciones -->
+    <div class="actions">
+      <button
+        class="btn approve"
+        (click)="openConfirm('APROBADO')"
+        [disabled]="cargando"
+      >
+        Aprobar
+      </button>
+
+      <button
+        class="btn reject"
+        (click)="openConfirm('RECHAZADO')"
+        [disabled]="cargando"
+      >
+        Rechazar
+      </button>
+    </div>
+
+    <!-- Contador -->
+    <div class="counter">{{ currentIndex + 1 }} / {{ total }}</div>
+  </div>
+
+  <!-- Estado vacío -->
+  <ng-template #emptyState>
+    <div class="card empty">
+      <h2 class="title">Aprobaciones</h2>
+
+      <ng-container *ngIf="cargando; else noPendientes">
+        <p>Cargando pendientes…</p>
+      </ng-container>
+
+      <ng-template #noPendientes>
+        <p>No hay solicitudes pendientes.</p>
+      </ng-template>
+
+      <button
+        class="btn refresh"
+        (click)="cargarPendientes()"
+        [disabled]="cargando"
+      >
+        Recargar
+      </button>
+    </div>
+  </ng-template>
+
+  <!-- Modal confirmación -->
+  <div class="confirm-overlay" *ngIf="confirmVisible">
+    <div class="confirm-modal">
+      <h3>Confirmación</h3>
+      <p>{{ confirmText }}</p>
+
+      <div class="confirm-actions">
+        <button
+          class="btn cancel"
+          (click)="closeConfirm()"
+          [disabled]="cargando"
+        >
+          No
+        </button>
+
+        <button
+          class="btn ok"
+          (click)="confirmYes()"
+          [disabled]="cargando"
+        >
+          Sí
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

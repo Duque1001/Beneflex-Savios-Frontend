@@ -1,0 +1,71 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 25px;
+  width: 400px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.cancel {
+  background: #ccc;
+}
+
+.confirm {
+  background: #5e2d91;
+  color: white;
+}
+
+.field {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+small {
+  color: red;
+}
+
+select {
+  width: 100%;
+  padding: 6px;
+}
+
+input.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid {
+  border: 2px solid #e53935;
+  background: #fdecec;
+}

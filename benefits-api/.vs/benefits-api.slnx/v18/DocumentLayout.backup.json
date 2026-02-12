@@ -1,0 +1,265 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\AZURE\\www\\benefits-api\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\benefit-requests.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\benefit-requests\\benefit-requests.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\benefit-requests.controller.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\benefit-requests\\benefit-requests.controller.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\entities\\benefit-request.entity.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\benefit-requests\\entities\\benefit-request.entity.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\benefits\\benefits.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\benefits\\benefits.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\benefit-balances\\benefit-balances.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\benefit-balances\\benefit-balances.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\benefit-balances\\entities\\benefit-balance.entity.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\benefit-balances\\entities\\benefit-balance.entity.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\benefit-requests.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\benefit-requests\\benefit-requests.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\dto\\create-benefit-request.dto.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\benefit-requests\\dto\\create-benefit-request.dto.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\main.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\benefits\\dto\\update-benefit.dto.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\benefits\\dto\\update-benefit.dto.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\benefits\\benefits.controller.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\benefits\\benefits.controller.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\benefits\\dto\\benefitCard.dto.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\benefits\\dto\\benefitCard.dto.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\benefits\\benefits.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\benefits\\benefits.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\benefits\\entities\\benefit.entity.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\benefits\\entities\\benefit.entity.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AZURE\\www\\benefits-api\\src\\app.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app.module.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 10,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "benefit-requests.service.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\benefit-requests.service.ts",
+              "RelativeDocumentMoniker": "src\\benefit-requests\\benefit-requests.service.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\benefit-requests.service.ts",
+              "RelativeToolTip": "src\\benefit-requests\\benefit-requests.service.ts",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAiwDcAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T15:18:44.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "benefit-requests.controller.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\benefit-requests.controller.ts",
+              "RelativeDocumentMoniker": "src\\benefit-requests\\benefit-requests.controller.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\benefit-requests.controller.ts",
+              "RelativeToolTip": "src\\benefit-requests\\benefit-requests.controller.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T21:57:11.941Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "benefit-request.entity.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\entities\\benefit-request.entity.ts",
+              "RelativeDocumentMoniker": "src\\benefit-requests\\entities\\benefit-request.entity.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\entities\\benefit-request.entity.ts",
+              "RelativeToolTip": "src\\benefit-requests\\entities\\benefit-request.entity.ts",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T21:59:30.607Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "benefits.service.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\benefits\\benefits.service.ts",
+              "RelativeDocumentMoniker": "src\\benefits\\benefits.service.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\benefits\\benefits.service.ts",
+              "RelativeToolTip": "src\\benefits\\benefits.service.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T15:35:10.947Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "main.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\main.ts",
+              "RelativeDocumentMoniker": "src\\main.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\main.ts",
+              "RelativeToolTip": "src\\main.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T17:22:12.065Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "benefit-balances.module.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\benefit-balances\\benefit-balances.module.ts",
+              "RelativeDocumentMoniker": "src\\benefit-balances\\benefit-balances.module.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\benefit-balances\\benefit-balances.module.ts",
+              "RelativeToolTip": "src\\benefit-balances\\benefit-balances.module.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T15:07:19.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "benefit-balance.entity.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\benefit-balances\\entities\\benefit-balance.entity.ts",
+              "RelativeDocumentMoniker": "src\\benefit-balances\\entities\\benefit-balance.entity.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\benefit-balances\\entities\\benefit-balance.entity.ts",
+              "RelativeToolTip": "src\\benefit-balances\\entities\\benefit-balance.entity.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T15:02:56.014Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "create-benefit-request.dto.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\dto\\create-benefit-request.dto.ts",
+              "RelativeDocumentMoniker": "src\\benefit-requests\\dto\\create-benefit-request.dto.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\dto\\create-benefit-request.dto.ts",
+              "RelativeToolTip": "src\\benefit-requests\\dto\\create-benefit-request.dto.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T21:46:25.139Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "benefit-requests.module.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\benefit-requests.module.ts",
+              "RelativeDocumentMoniker": "src\\benefit-requests\\benefit-requests.module.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\benefit-requests\\benefit-requests.module.ts",
+              "RelativeToolTip": "src\\benefit-requests\\benefit-requests.module.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T22:08:08.416Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "update-benefit.dto.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\benefits\\dto\\update-benefit.dto.ts",
+              "RelativeDocumentMoniker": "src\\benefits\\dto\\update-benefit.dto.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\benefits\\dto\\update-benefit.dto.ts",
+              "RelativeToolTip": "src\\benefits\\dto\\update-benefit.dto.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T15:45:24.954Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "benefits.controller.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\benefits\\benefits.controller.ts",
+              "RelativeDocumentMoniker": "src\\benefits\\benefits.controller.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\benefits\\benefits.controller.ts",
+              "RelativeToolTip": "src\\benefits\\benefits.controller.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T15:34:00.217Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "benefit.entity.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\benefits\\entities\\benefit.entity.ts",
+              "RelativeDocumentMoniker": "src\\benefits\\entities\\benefit.entity.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\benefits\\entities\\benefit.entity.ts",
+              "RelativeToolTip": "src\\benefits\\entities\\benefit.entity.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T14:55:10.467Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "benefits.module.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\benefits\\benefits.module.ts",
+              "RelativeDocumentMoniker": "src\\benefits\\benefits.module.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\benefits\\benefits.module.ts",
+              "RelativeToolTip": "src\\benefits\\benefits.module.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T15:11:01.321Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "benefitCard.dto.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\benefits\\dto\\benefitCard.dto.ts",
+              "RelativeDocumentMoniker": "src\\benefits\\dto\\benefitCard.dto.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\benefits\\dto\\benefitCard.dto.ts",
+              "RelativeToolTip": "src\\benefits\\dto\\benefitCard.dto.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T15:21:30.386Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "app.module.ts",
+              "DocumentMoniker": "D:\\AZURE\\www\\benefits-api\\src\\app.module.ts",
+              "RelativeDocumentMoniker": "src\\app.module.ts",
+              "ToolTip": "D:\\AZURE\\www\\benefits-api\\src\\app.module.ts",
+              "RelativeToolTip": "src\\app.module.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-08T15:03:44.549Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

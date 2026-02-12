@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="beneflex-app.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>

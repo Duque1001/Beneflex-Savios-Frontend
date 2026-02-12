@@ -1,0 +1,25 @@
+<!-- Tarjeta individual de beneficio -->
+<div class="card">
+
+  <!-- Muestra el ícono solo si existe iconSrc -->
+  <div class="icon-wrap" *ngIf="iconSrc">
+    <img class="icon"
+         [src]="iconSrc"
+         [alt]="title" />
+  </div>
+
+  <!-- Nombre del beneficio -->
+  <h3>{{ title }}</h3>
+
+  <!-- Días disponibles -->
+  <p class="days">{{ days }} días</p>
+  <p>Disponibles</p>
+
+  <!-- Botón para solicitar el beneficio -->
+  <button
+    [disabled]="days === 0"
+    (click)="onSolicitar()">
+    + Solicitar
+  </button>
+
+</div>

@@ -1,0 +1,21 @@
+<!-- Grid que muestra todas las tarjetas de beneficios -->
+<div class="grid">
+
+  <!-- *ngFor: recorre el arreglo "beneficios" y crea un <app-benefit-card> por cada elemento. -->
+  <app-benefit-card
+    *ngFor="let b of beneficios"
+    [iconSrc]="b.iconSrc"
+    [title]="b.title"
+    [days]="b.days"
+    (solicitar)="abrirModal(b)">
+  </app-benefit-card>
+
+</div>
+
+<!-- Modal para crear solicitud de un beneficio -->
+<app-solicitud-modal
+  [visible]="modalVisible"
+  [beneficio]="beneficioSeleccionado"
+  (cerrar)="cerrarModal()"
+  (confirmar)="enviarSolicitud($event)">
+</app-solicitud-modal>

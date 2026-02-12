@@ -1,0 +1,63 @@
+<div class="page">
+
+  <!-- Título -->
+  <h1 class="title">Mis Solicitudes</h1>
+
+  <!-- Estado de carga -->
+  <div class="state" *ngIf="cargando">
+    Cargando…
+  </div>
+
+  <!-- Estado vacío si no hay solicitudes -->
+  <div class="state" *ngIf="!cargando && !solicitudes.length">
+    No tienes solicitudes.
+  </div>
+
+  <!-- Lista de solicitudes -->
+  <div class="list" *ngIf="!cargando && solicitudes.length">
+
+    <!-- Itera cada solicitud -->
+    <div class="item" *ngFor="let req of solicitudes">
+
+      <!-- Ícono del beneficio -->
+      <div class="icon">
+        <img
+          *ngIf="iconSrcFor(req.benefit_name) as src; else fallbackIcon"
+          class="benefit-icon"
+          [src]="src"
+          [alt]="req.benefit_name || 'Beneficio'" />
+
+        <!-- Ícono alternativo si no hay imagen -->
+        <ng-template #fallbackIcon>📌</ng-template>
+      </div>
+
+      <!-- Información de la solicitud -->
+      <div class="info">
+        <div class="line"><b>Beneficio:</b> {{ req.benefit_name || '—' }}</div>
+        <div class="line"><b>Fecha/Desde:</b> {{ formatFechaLarga(req.start_date) }}</div>
+        <div class="line"><b>Días:</b> {{ req.requested_days ?? '—' }}</div>
+        <div class="line"><b>Estado:</b> {{ req.status || 'PENDING' }}</div>
+      </div>
+
+      <!-- Botón cancelar -->
+      <button
+        class="x"
+        title="Cancelar solicitud"
+        [disabled]="!canCancel(req)"
+        (click)="onClickCancel(req)">
+        ×
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Componente popup de confirmación -->
+<app-confirm-dialog
+  [visible]="confirmVisible"
+  [title]="confirmTitle"
+  [message]="confirmMessage"
+  confirmText="Sí, cancelar"
+  cancelText="No"
+  (cancel)="onCancelPopup()"
+  (confirm)="onConfirmPopup()">
+</app-confirm-dialog>

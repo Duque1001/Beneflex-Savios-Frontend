@@ -1,0 +1,30 @@
+<!-- Overlay oscuro que cubre la pantalla. Solo se muestra si "visible" es true -->
+     <div class="overlay" *ngIf="visible">
+
+      <!-- Contenedor del cuadro de diálogo -->
+      <div class="dialog">
+
+        <!-- Título dinámico -->
+        <h3 class="title">{{ title }}</h3>
+
+        <!-- Mensaje dinámico -->
+        <p class="msg">{{ message }}</p>
+
+        <!-- Botones de acción -->
+        <div class="actions">
+
+          <!-- Botón cancelar: emite evento cancel -->
+          <button class="btn cancel"
+                  (click)="onCancel()">
+            {{ cancelText }}
+          </button>
+
+          <!-- Botón confirmar: emite evento confirm -->
+          <button class="btn ok"
+                  (click)="onConfirm()">
+            {{ confirmText }}
+          </button>
+
+        </div>
+      </div>
+    </div>

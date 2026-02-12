@@ -1,0 +1,58 @@
+    .sidebar {
+      width: 260px;
+      background: #f3f3f3;
+      padding: 12px 10px;
+      border-right: 1px solid #ddd;
+    }
+
+    /* Links y botón idénticos */
+    .sidebar a,
+    .sidebar button {
+      all: unset;
+      box-sizing: border-box;
+
+      display: block;
+      width: 100%;
+
+      padding: 18px 18px;
+      margin: 8px 0;
+
+      font-size: 18px;
+      font-weight: 600;
+      color: #5e2d91;
+
+      cursor: pointer;
+      user-select: none;
+
+      border-radius: 8px;
+      transition: background-color 0.15s ease-in-out;
+    }
+
+    /* Quitar subrayado */
+    .sidebar a {
+      text-decoration: none;
+    }
+
+    /* Hover uniforme */
+    .sidebar a:hover,
+    .sidebar button:hover,
+    .sidebar a.active:hover,
+    .sidebar button.active:hover {
+      background: #e8dff2;
+    }
+
+    /* Estado activo (sin fondo blanco, pero marcado) */
+    .sidebar a.active,
+    .sidebar button.active {
+      background: transparent;
+      font-weight: 700;
+    }
+
+    /* Accesibilidad: foco con teclado */
+    .sidebar a:focus-visible,
+    .sidebar button:focus-visible {
+      outline: 2px solid #5e2d91;
+      outline-offset: 2px;
+      border-radius: 8px;
+    }
+

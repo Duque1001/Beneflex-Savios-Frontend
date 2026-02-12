@@ -1,0 +1,29 @@
+<nav class="sidebar">
+  <!-- Link: Beneficios (ruta exacta /app) -->
+  <a
+    routerLink="/app"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Beneficios
+  </a>
+
+  <!-- Link: Mis Solicitudes -->
+  <a
+    routerLink="/app/mis-solicitudes"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Mis Solicitudes
+  </a>
+
+  <!-- Link: Aprobaciones (solo líder) -->
+  <a
+    *ngIf="userService.isLeader()"
+    routerLink="/app/aprobaciones"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Aprobaciones
+  </a>
+</nav>
