@@ -8,7 +8,9 @@ import { ApiController } from './api/api.controller';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     BenefitsModule,
     BenefitRequestsModule,
   ],

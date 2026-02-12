@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
+
 import { FunctionsClient } from '../functions/functions.client';
 
 @Controller('api')
