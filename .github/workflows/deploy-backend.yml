@@ -26,7 +26,7 @@ jobs:
           cache: "npm"
           cache-dependency-path: benefits-api/package-lock.json
 
-      - name: Install dependencies
+      - name: Install
         working-directory: benefits-api
         run: npm ci
 
@@ -34,17 +34,9 @@ jobs:
         working-directory: benefits-api
         run: npm run build
 
-      # Empaqueta solo lo necesario para el deploy
-      - name: Prepare package
-        run: |
-          mkdir -p deploy
-          cp -R benefits-api/* deploy/
-          rm -rf deploy/node_modules
-        shell: bash
-
-      - name: Deploy to Azure Web App
+      - name: Deploy
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: deploy
+          package: benefits-api
