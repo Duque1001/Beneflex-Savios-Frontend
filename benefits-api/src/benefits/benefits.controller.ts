@@ -7,7 +7,6 @@ export class BenefitsController {
 
   @Get('benefits')
   getUserBenefits(@Query('userId') userId: string) {
-    const year = new Date().getFullYear();
-    return this.benefitsService.getBenefitsForUser(Number(userId), year);
+    return this.benefitsService.getBenefitsForUser(Number(userId));
   }
 }
