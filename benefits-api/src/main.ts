@@ -5,15 +5,24 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const allowedOrigins = [
-    'http://localhost:4200',
-    'http://localhost:56406',
-    process.env.FRONTEND_URL,
-  ].filter((x): x is string => typeof x === 'string' && x.length > 0);
+  // const allowedOrigins = [
+  //   'http://localhost:4200',
+  //   'http://localhost:56406',
+  //   process.env.FRONTEND_URL,
+  // ].filter((x): x is string => typeof x === 'string' && x.length > 0);
 
+  // app.enableCors({
+  //   origin: allowedOrigins,
+  //   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  //   credentials: true,
+  // });
   app.enableCors({
-    origin: allowedOrigins,
+    origin: [
+      'https://calm-rock-0ddd0211e.6.azurestaticapps.net',
+      'http://localhost:4200',
+    ],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   });
 
