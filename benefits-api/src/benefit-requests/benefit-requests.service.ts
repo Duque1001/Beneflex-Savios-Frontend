@@ -6,10 +6,18 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { BenefitRequest, BenefitRequestStatus } from './entities/benefit-request.entity';
+import {
+  BenefitRequest,
+  BenefitRequestStatus,
+} from './entities/benefit-request.entity';
 import { Benefit } from '../benefits/entities/benefit.entity';
 import { BenefitBalance } from '../benefit-balances/entities/benefit-balance.entity';
 import { CreateBenefitRequestDto } from './dto/create-benefit-request.dto';
+
+type UpdateStatusAllowed =
+  | BenefitRequestStatus.APROBADO
+  | BenefitRequestStatus.RECHAZADO
+  | BenefitRequestStatus.CANCELADO;
 
 @Injectable()
 export class BenefitRequestsService {
@@ -75,7 +83,7 @@ export class BenefitRequestsService {
 
   async updateStatus(
     requestId: number,
-    status: BenefitRequestStatus.APROBADO | BenefitRequestStatus.RECHAZADO | BenefitRequestStatus.CANCELADO,
+    status: UpdateStatusAllowed,
     comment?: string,
   ) {
     return this.requestRepo.manager.transaction(async (manager) => {
@@ -91,7 +99,6 @@ export class BenefitRequestsService {
         throw new BadRequestException('La solicitud ya fue procesada');
       }
 
-      // SOLO si se aprueba, afecta el balance
       if (status === BenefitRequestStatus.APROBADO) {
         const balance = await manager.findOne(BenefitBalance, {
           where: {

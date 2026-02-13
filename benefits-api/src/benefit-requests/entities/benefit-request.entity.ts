@@ -20,20 +20,17 @@ export class BenefitRequest {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // USER (solo ID)
-  @Column({ type: 'int' })
+  @Column()
   user_id: number;
 
-  // BENEFIT
-  @Column({ type: 'int' })
+  @Column()
   benefit_id: number;
 
-  @ManyToOne(() => Benefit, { eager: false })
+  @ManyToOne(() => Benefit)
   @JoinColumn({ name: 'benefit_id' })
   benefit: Benefit;
 
-  // DATOS
-  @Column({ type: 'float' })
+  @Column('float')
   requested_days: number;
 
   @Column({ type: 'date' })
@@ -49,7 +46,7 @@ export class BenefitRequest {
   })
   status: BenefitRequestStatus;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ nullable: true })
   comment: string | null;
 
   @CreateDateColumn()
