@@ -75,10 +75,5 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  },
-  "main": "server.js",
-  "scripts": {
-  "start": "node server.js",
-  "start:prod": "node server.js"
-  }  
+  } 
 }
