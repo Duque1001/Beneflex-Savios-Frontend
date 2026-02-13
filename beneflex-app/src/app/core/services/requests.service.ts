@@ -43,9 +43,9 @@ export class RequestsService {
   // Obtiene las solicitudes del usuario, envía el userId como parámetro en la URL
   getMyRequests(userId: number): Observable<MyRequest[]> {
     const params = new HttpParams().set('userId', String(userId));
-
     return this.http.get<MyRequest[]>(`${this.apiBase}/my-requests`, { params });
   }
+
 
 
   // Actualiza el estado de una solicitud (aprobar, rechazar, cancelar), se envía el payload por POST al backend.

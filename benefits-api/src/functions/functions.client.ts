@@ -1,10 +1,14 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class FunctionsClient {
   private readonly http: AxiosInstance;
 
   constructor() {
-    const url = process.env.FUNCTIONS_BASE_URL;
+    const url =
+      process.env.FUNCTIONS_BASE_URL || process.env.FUNCTIONS_API_BASE_URL;
+
     if (!url) {
       throw new Error('FUNCTIONS_BASE_URL no está definida');
     }
@@ -12,38 +16,59 @@ export class FunctionsClient {
     const baseURL = url.replace(/\/$/, '');
 
     this.http = axios.create({
-      baseURL: baseURL,
+      baseURL,
       timeout: 15000,
     });
   }
 
-  async getMe(): Promise<any> {
-    const r: AxiosResponse<any> = await this.http.get('/get-me');
-    return r.data;
+  private authHeaders(auth?: string) {
+    return auth ? { Authorization: auth } : {};
   }
 
-  async getUserBenefits(userId: number): Promise<any> {
-    const r: AxiosResponse<any> = await this.http.get('/get-user-benefits', {
-      params: { userId },
+  async getMe(auth?: string): Promise<any> {
+    const r: AxiosResponse<any> = await this.http.get('/get-me', {
+      headers: this.authHeaders(auth),
     });
     return r.data;
   }
 
-  async createBenefitRequest(payload: any): Promise<any> {
+  async getUserBenefits(userId: number, auth?: string): Promise<any> {
+    const r: AxiosResponse<any> = await this.http.get('/get-user-benefits', {
+      params: { userId },
+      headers: this.authHeaders(auth),
+    });
+    return r.data;
+  }
+
+  async createBenefitRequest(payload: any, auth?: string): Promise<any> {
     const r: AxiosResponse<any> = await this.http.post(
       '/create-benefit-request',
       payload,
+      { headers: this.authHeaders(auth) },
     );
     return r.data;
   }
 
-  async getMyRequests(): Promise<any> {
-    const r: AxiosResponse<any> = await this.http.get('/get-my-requests');
+  async getMyRequests(auth?: string): Promise<any> {
+    const r: AxiosResponse<any> = await this.http.get('/get-my-requests', {
+      headers: this.authHeaders(auth),
+    });
     return r.data;
   }
 
-  async getPendingRequests(): Promise<any> {
-    const r: AxiosResponse<any> = await this.http.get('/get-pending-requests');
+  async getPendingRequests(auth?: string): Promise<any> {
+    const r: AxiosResponse<any> = await this.http.get('/get-pending-requests', {
+      headers: this.authHeaders(auth),
+    });
+    return r.data;
+  }
+
+  async updateRequestStatus(payload: any, auth?: string): Promise<any> {
+    const r: AxiosResponse<any> = await this.http.post(
+      '/update-request-status',
+      payload,
+      { headers: this.authHeaders(auth) },
+    );
     return r.data;
   }
 }

@@ -8,32 +8,32 @@ import {
 } from 'typeorm';
 import { Benefit } from '../../benefits/entities/benefit.entity';
 
+export enum BenefitRequestStatus {
+  PENDIENTE = 'PENDIENTE',
+  APROBADO = 'APROBADO',
+  RECHAZADO = 'RECHAZADO',
+  CANCELADO = 'CANCELADO',
+}
+
 @Entity('benefit_requests')
 export class BenefitRequest {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // ======================
-  // USER (solo ID por ahora)
-  // ======================
-  @Column()
+  // USER (solo ID)
+  @Column({ type: 'int' })
   user_id: number;
 
-  // ======================
   // BENEFIT
-  // ======================
-  @Column()
+  @Column({ type: 'int' })
   benefit_id: number;
 
-  @ManyToOne(() => Benefit)
+  @ManyToOne(() => Benefit, { eager: false })
   @JoinColumn({ name: 'benefit_id' })
   benefit: Benefit;
 
-  // ======================
   // DATOS
-  // ======================
-
-  @Column('float')
+  @Column({ type: 'float' })
   requested_days: number;
 
   @Column({ type: 'date' })
@@ -44,13 +44,13 @@ export class BenefitRequest {
 
   @Column({
     type: 'enum',
-    enum: ['PENDING', 'APPROVED', 'REJECTED'],
-    default: 'PENDING',
+    enum: BenefitRequestStatus,
+    default: BenefitRequestStatus.PENDIENTE,
   })
-  status: 'PENDING' | 'APPROVED' | 'REJECTED';
+  status: BenefitRequestStatus;
 
-  @Column({ nullable: true })
-  comment: string;
+  @Column({ type: 'text', nullable: true })
+  comment: string | null;
 
   @CreateDateColumn()
   created_at: Date;
