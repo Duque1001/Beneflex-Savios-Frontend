@@ -1,23 +1,16 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import {
-  BenefitRequest,
-  BenefitRequestStatus,
-} from './entities/benefit-request.entity';
-import { Benefit } from '../benefits/entities/benefit.entity';
+import { BenefitRequest, BenefitRequestStatus } from './entities/benefit-request.entity';
 import { BenefitBalance } from '../benefit-balances/entities/benefit-balance.entity';
 import { CreateBenefitRequestDto } from './dto/create-benefit-request.dto';
 
-type UpdateStatusAllowed =
-  | BenefitRequestStatus.APROBADO
-  | BenefitRequestStatus.RECHAZADO
-  | BenefitRequestStatus.CANCELADO;
+const ALLOWED_UPDATE_STATUSES: BenefitRequestStatus[] = [
+  BenefitRequestStatus.APROBADO,
+  BenefitRequestStatus.RECHAZADO,
+  BenefitRequestStatus.CANCELADO,
+];
 
 @Injectable()
 export class BenefitRequestsService {
@@ -27,9 +20,6 @@ export class BenefitRequestsService {
 
     @InjectRepository(BenefitBalance)
     private readonly balanceRepo: Repository<BenefitBalance>,
-
-    @InjectRepository(Benefit)
-    private readonly benefitRepo: Repository<Benefit>,
   ) {}
 
   async create(dto: CreateBenefitRequestDto) {
@@ -81,11 +71,14 @@ export class BenefitRequestsService {
     });
   }
 
-  async updateStatus(
-    requestId: number,
-    status: UpdateStatusAllowed,
-    comment?: string,
-  ) {
+  async updateStatus(requestId: number, status: BenefitRequestStatus, comment?: string) {
+    // Seguridad extra por si te llaman directo sin pasar por el controller
+    if (!ALLOWED_UPDATE_STATUSES.includes(status)) {
+      throw new BadRequestException(
+        `Estado inválido para actualización. Solo se permite: ${ALLOWED_UPDATE_STATUSES.join(', ')}`,
+      );
+    }
+
     return this.requestRepo.manager.transaction(async (manager) => {
       const request = await manager.findOne(BenefitRequest, {
         where: { id: requestId },
@@ -99,6 +92,7 @@ export class BenefitRequestsService {
         throw new BadRequestException('La solicitud ya fue procesada');
       }
 
+      // SOLO si se aprueba, afecta el balance
       if (status === BenefitRequestStatus.APROBADO) {
         const balance = await manager.findOne(BenefitBalance, {
           where: {
