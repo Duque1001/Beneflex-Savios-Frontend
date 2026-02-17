@@ -12,8 +12,9 @@ async function bootstrap() {
       'http://localhost:4200',
       'https://calm-rock-0ddd0211e.6.azurestaticapps.net',
     ],
-    methods: 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type, Authorization',
+    credentials: true,
   });
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
