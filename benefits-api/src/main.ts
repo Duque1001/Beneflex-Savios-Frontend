@@ -7,8 +7,10 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
 
+  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:4200';
+
   app.enableCors({
-    origin: ['https://calm-rock-0ddd0211e.6.azurestaticapps.net'],
+    origin: [frontendUrl],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type, Authorization',
     credentials: true,

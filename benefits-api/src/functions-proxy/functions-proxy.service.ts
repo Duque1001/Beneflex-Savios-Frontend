@@ -1,14 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
-import axios from 'axios';
 
 @Injectable()
 export class FunctionsProxyService {
   constructor(private readonly http: HttpService) {}
 
   private get baseUrl() {
-    return process.env.FUNCTIONS_API_BASE_URL!;
+    const base =
+      process.env.FUNCTIONS_BASE_URL || process.env.FUNCTIONS_API_BASE_URL;
+
+    if (!base) {
+      throw new Error('Missing environment variable: FUNCTIONS_BASE_URL');
+    }
+    return base;
   }
 
   async getMe(auth?: string) {
