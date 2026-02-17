@@ -37,6 +37,7 @@ import {
   MsalService,
   MsalGuard,
   MsalBroadcastService,
+  MsalRedirectComponent,
   MSAL_INSTANCE,
   MSAL_GUARD_CONFIG,
   MsalGuardConfiguration,
@@ -133,6 +134,6 @@ export function msalInterceptorConfigFactory(): MsalInterceptorConfiguration {
   ],
 
   // Componente raíz que se arranca
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, MsalRedirectComponent]
 })
 export class AppModule {}

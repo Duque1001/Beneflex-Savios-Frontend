@@ -44,20 +44,20 @@ export class AppComponent implements OnInit, OnDestroy {
 
   // Inicializa MSAL, procesa el redirect del login, selecciona cuenta activa, y luego carga el usuario desde /me cuando no haya interacción en progreso.
   async ngOnInit() {
-    // Inicializa MSAL (necesario antes de usar login/redirect)
-    await this.msal.instance.initialize();
+    // // Inicializa MSAL (necesario antes de usar login/redirect)
+    // await this.msal.instance.initialize();
 
-    // Procesa el resultado del loginRedirect
-    const result = await this.msal.instance.handleRedirectPromise();
+    // // Procesa el resultado del loginRedirect
+    // const result = await this.msal.instance.handleRedirectPromise();
 
-    // Si el redirect trajo una cuenta, la deja activa
-    if (result?.account) {
-      this.msal.instance.setActiveAccount(result.account);
-    } else {
-      // Si no, intenta usar la primera cuenta en caché
-      const accounts = this.msal.instance.getAllAccounts();
-      if (accounts.length) this.msal.instance.setActiveAccount(accounts[0]);
-    }
+    // // Si el redirect trajo una cuenta, la deja activa
+    // if (result?.account) {
+    //   this.msal.instance.setActiveAccount(result.account);
+    // } else {
+    //   // Si no, intenta usar la primera cuenta en caché
+    //   const accounts = this.msal.instance.getAllAccounts();
+    //   if (accounts.length) this.msal.instance.setActiveAccount(accounts[0]);
+    // }
 
     // Escucha cuando MSAL termina cualquier interacción. Ahí sí es seguro llamar /me porque ya hay cuenta/token listo.
     this.msalBroadcast.inProgress$
