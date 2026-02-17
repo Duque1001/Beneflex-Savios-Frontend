@@ -3,7 +3,7 @@ import type { Request } from 'express';
 
 import { FunctionsClient } from '../functions/functions.client';
 
-@Controller('api')
+@Controller()
 export class ApiController {
   constructor(private readonly fx: FunctionsClient) {}
 
