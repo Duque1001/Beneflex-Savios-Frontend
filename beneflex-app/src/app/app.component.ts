@@ -61,19 +61,18 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // Escucha cuando MSAL termina cualquier interacción. Ahí sí es seguro llamar /me porque ya hay cuenta/token listo.
     this.msalBroadcast.inProgress$
-      .pipe(
-        filter((status) => status === InteractionStatus.None),
-        takeUntil(this.destroy$)
-      )
-      .subscribe(() => {
-        const account = this.msal.instance.getActiveAccount();
+    .pipe(
+      filter((status) => status === InteractionStatus.None),
+      takeUntil(this.destroy$)
+    )
+    .subscribe(() => {
+      const account = this.msal.instance.getActiveAccount();
 
-        // Solo carga /me si hay cuenta y aún no se ha cargado
-        if (account && !this.loadedMe) {
-          this.loadedMe = true;
-          this.loadMe();
-        }
-      });
+      if (account && !this.loadedMe) {
+        this.loadedMe = true;
+        this.loadMe();
+      }
+    });
   }
 
   // Llama al endpoint /me (o get-me) para traer el usuario de la app, luego lo guarda en UserService para usar id/rol en toda la app.

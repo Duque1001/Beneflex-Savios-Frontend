@@ -31,6 +31,10 @@ import { BenefitCardComponent } from './shared/benefit-card/benefit-card.compone
 import { SolicitudModalComponent } from './shared/solicitud-modal/solicitud-modal.component';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 
+import { APP_INITIALIZER } from '@angular/core';
+import { msalInitializerFactory } from './msal-init.factory';
+
+
 // MSAL: autenticación y protección de rutas + interceptor de tokens
 import {
   MsalModule,
@@ -129,8 +133,15 @@ export function msalInterceptorConfigFactory(): MsalInterceptorConfiguration {
     MsalGuard,
     MsalBroadcastService,
 
+    {
+      provide: APP_INITIALIZER,
+      useFactory: msalInitializerFactory,
+      deps: [MsalService],
+      multi: true
+    },
+
     // Interceptor: adjunta token a requests protegidos
-    { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
   ],
 
   // Componente raíz que se arranca
