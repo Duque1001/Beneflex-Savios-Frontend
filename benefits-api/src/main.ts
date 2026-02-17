@@ -7,13 +7,30 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
 
-  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:4200';
+  const allowedOrigins = [
+    process.env.FRONTEND_URL,
+    'http://localhost:4200',
+  ].filter(Boolean) as string[];
 
   app.enableCors({
-    origin: [frontendUrl],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    allowedHeaders: 'Content-Type, Authorization',
+    origin: (origin, callback) => {
+      // Permite llamadas sin Origin (Postman, curl, etc.)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+
+      return callback(new Error(`CORS blocked for origin: ${origin}`), false);
+    },
     credentials: true,
+    methods: ['GET','POST','PUT','PATCH','DELETE','OPTIONS'],
+    allowedHeaders: ['Content-Type','Authorization'],
+  });
+
+  app.use((req, res, next) => {
+    if (req.method === 'OPTIONS') {
+      return res.sendStatus(204);
+    }
+    next();
   });
 
   const port = Number(process.env.PORT) || 3000;
