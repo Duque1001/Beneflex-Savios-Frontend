@@ -4,7 +4,7 @@ export const environment = {
   // BACKEND (App Service) local:
   functionsApiBaseUrl: 'http://localhost:3000/api',
 
-  // URLs apuntan al BACKEND
+  // Apuntar al BACKEND
   meApiUrl: 'http://localhost:3000/api/get-me',
   benefitsApiUrl: 'http://localhost:3000/api/get-user-benefits',
   createBenefitApiUrl: 'http://localhost:3000/api/create-benefit-request',
