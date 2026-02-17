@@ -70,7 +70,7 @@ export function msalInstanceFactory() {
 // Config del guard: cómo autentica cuando entras a rutas protegidas
 export function msalGuardConfigFactory(): MsalGuardConfiguration {
   return {
-    interactionType: InteractionType.Redirect,
+    interactionType: InteractionType.Redirect, // login por redirect
     authRequest: {
       scopes: ['openid', 'profile', 'email'] // scopes básicos de identidad
     }
@@ -82,8 +82,7 @@ export function msalInterceptorConfigFactory(): MsalInterceptorConfiguration {
   const protectedResourceMap = new Map<string, Array<string>>();
 
   // Cuando la app llame a esta base URL, MSAL adjunta token
-  protectedResourceMap.set(`${environment.backendBaseUrl}/api`, ['openid', 'profile', 'email']);
-
+  protectedResourceMap.set(environment.functionsApiBaseUrl, ['openid', 'profile', 'email']);
 
   return {
     interactionType: InteractionType.Redirect,

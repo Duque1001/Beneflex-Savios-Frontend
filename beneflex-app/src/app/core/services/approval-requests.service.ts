@@ -43,14 +43,17 @@ export class ApprovalRequestsService {
   // Obtiene todas las solicitudes pendientes desde la API.
   getPendientes(): Observable<PendingRequestApi[]> {
     return this.http.get<PendingRequestApi[]>(
-      `${environment.backendBaseUrl}/api/pending-requests`
+      environment.pendingRequestsApiUrl
     );
   }
 
   // Envía al backend la aprobación o rechazo de una solicitud, usa método POST para actualizar estado.
-  updateRequestStatus(payload: UpdateRequestStatusPayload): Observable<any> {
+  updateRequestStatus(
+    payload: UpdateRequestStatusPayload
+  ): Observable<any> {
+
     return this.http.post(
-      `${environment.backendBaseUrl}/api/update-request-status`,
+      environment.updateRequestStatusApiUrl,
       payload
     );
   }

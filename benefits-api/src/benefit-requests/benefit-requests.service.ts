@@ -1,16 +1,14 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-
-import { BenefitRequest, BenefitRequestStatus } from './entities/benefit-request.entity';
+import { BenefitRequest } from './entities/benefit-request.entity';
+import { Benefit } from '../benefits/entities/benefit.entity';
 import { BenefitBalance } from '../benefit-balances/entities/benefit-balance.entity';
 import { CreateBenefitRequestDto } from './dto/create-benefit-request.dto';
-
-const ALLOWED_UPDATE_STATUSES: BenefitRequestStatus[] = [
-  BenefitRequestStatus.APROBADO,
-  BenefitRequestStatus.RECHAZADO,
-  BenefitRequestStatus.CANCELADO,
-];
 
 @Injectable()
 export class BenefitRequestsService {
@@ -20,10 +18,14 @@ export class BenefitRequestsService {
 
     @InjectRepository(BenefitBalance)
     private readonly balanceRepo: Repository<BenefitBalance>,
+
+    @InjectRepository(Benefit)
+    private readonly benefitRepo: Repository<Benefit>,
   ) {}
 
   async create(dto: CreateBenefitRequestDto) {
-    return this.requestRepo.manager.transaction(async (manager) => {
+    return await this.requestRepo.manager.transaction(async (manager) => {
+      // 1. Buscar balance del usuario
       const balance = await manager.findOne(BenefitBalance, {
         where: {
           user_id: dto.userId,
@@ -32,25 +34,27 @@ export class BenefitRequestsService {
       });
 
       if (!balance) {
-        throw new BadRequestException('No existe balance para este beneficio');
+        throw new Error('No existe balance para este beneficio');
       }
 
       if (balance.available_days < dto.requestedDays) {
-        throw new BadRequestException('No tienes días suficientes');
+        throw new Error('No tienes días suficientes');
       }
 
+      // 2. Crear solicitud
       const request = manager.create(BenefitRequest, {
         user_id: dto.userId,
         benefit_id: dto.benefitId,
         requested_days: dto.requestedDays,
         start_date: new Date(dto.startDate),
         end_date: dto.endDate ? new Date(dto.endDate) : null,
-        status: BenefitRequestStatus.PENDIENTE,
-        comment: dto.comment ?? null,
-        reviewed_at: null,
+        status: 'PENDING',
+        comment: dto.comment,
+        created_at: new Date(),
       });
 
       await manager.save(request);
+
       return request;
     });
   }
@@ -63,63 +67,71 @@ export class BenefitRequestsService {
     });
   }
 
-  async findPending() {
-    return this.requestRepo.find({
-      where: { status: BenefitRequestStatus.PENDIENTE },
-      relations: ['benefit'],
-      order: { created_at: 'DESC' },
+  async updateStatus(requestId: number, status: 'APPROVED' | 'REJECTED') {
+    const request = await this.requestRepo.findOne({
+      where: { id: requestId },
     });
-  }
 
-  async updateStatus(requestId: number, status: BenefitRequestStatus, comment?: string) {
-    // Seguridad extra por si te llaman directo sin pasar por el controller
-    if (!ALLOWED_UPDATE_STATUSES.includes(status)) {
-      throw new BadRequestException(
-        `Estado inválido para actualización. Solo se permite: ${ALLOWED_UPDATE_STATUSES.join(', ')}`,
-      );
+    if (!request) {
+      throw new NotFoundException('Solicitud no encontrada');
     }
 
-    return this.requestRepo.manager.transaction(async (manager) => {
-      const request = await manager.findOne(BenefitRequest, {
-        where: { id: requestId },
+    if (request.status !== 'PENDING') {
+      throw new BadRequestException('La solicitud ya fue procesada');
+    }
+
+    // SOLO si se aprueba, afecta el balance
+    if (status === 'APPROVED') {
+      const balance = await this.balanceRepo.findOne({
+        where: {
+          user_id: request.user_id,
+          benefit_id: request.benefit_id,
+        },
       });
 
-      if (!request) {
-        throw new NotFoundException('Solicitud no encontrada');
+      if (!balance) {
+        throw new NotFoundException('Balance no encontrado');
       }
 
-      if (request.status !== BenefitRequestStatus.PENDIENTE) {
-        throw new BadRequestException('La solicitud ya fue procesada');
+      balance.used_days += request.requested_days;
+      balance.available_days -= request.requested_days;
+
+      await this.balanceRepo.save(balance);
+    }
+
+    // SI SE RECHAZA → DEVOLVER DÍAS
+    if (status === 'REJECTED') {
+      const balance = await this.balanceRepo.findOne({
+        where: {
+          user_id: request.user_id,
+          benefit_id: request.benefit_id,
+        },
+      });
+
+      if (!balance) {
+        throw new NotFoundException('Balance no encontrado');
       }
 
-      // SOLO si se aprueba, afecta el balance
-      if (status === BenefitRequestStatus.APROBADO) {
-        const balance = await manager.findOne(BenefitBalance, {
-          where: {
-            user_id: request.user_id,
-            benefit_id: request.benefit_id,
-          },
-        });
+      balance.available_days += request.requested_days;
+      await this.balanceRepo.save(balance);
+    }
 
-        if (!balance) {
-          throw new NotFoundException('Balance no encontrado');
-        }
+    request.status = status;
+    request.reviewed_at = new Date();
 
-        if (balance.available_days < request.requested_days) {
-          throw new BadRequestException('Balance insuficiente para aprobar');
-        }
+    return this.requestRepo.save(request);
+  }
 
-        balance.used_days += request.requested_days;
-        balance.available_days -= request.requested_days;
+  /*  async findPending() {
+    console.log('ENTRÓ A findPending');
+    return this.requestRepo.find();
+  }*/
 
-        await manager.save(balance);
-      }
-
-      request.status = status;
-      request.comment = comment ?? request.comment ?? null;
-      request.reviewed_at = new Date();
-
-      return manager.save(request);
+  async findPending() {
+    return this.requestRepo.find({
+      where: { status: 'PENDING' },
+      relations: ['benefit'],
+      order: { created_at: 'DESC' },
     });
   }
 }

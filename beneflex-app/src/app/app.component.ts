@@ -76,9 +76,9 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
-  // Llama al endpoint get-me para traer el usuario de la app, luego lo guarda en UserService para usar id/rol en toda la app.
+  // Llama al endpoint /me (o get-me) para traer el usuario de la app, luego lo guarda en UserService para usar id/rol en toda la app.
   private loadMe() {
-    this.http.get<AppUser>(`${environment.backendBaseUrl}/api/get-me`).subscribe({
+    this.http.get<AppUser>(environment.meApiUrl).subscribe({
       next: (user) => {
         this.userService.setUser(user);
         console.log('Usuario cargado:', user); // solo debug

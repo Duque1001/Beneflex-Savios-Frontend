@@ -14,6 +14,7 @@ import { UserService } from '../../core/services/user.service';
 
 // Utilidad: nombre del beneficio/ícono
 import { benefitIconSrc } from '../../shared/utils/benefit-icon.util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vacaciones',
@@ -39,7 +40,8 @@ export class VacacionesComponent implements OnInit {
   constructor(
     private beneficiosService: BeneficiosService, // API beneficios/solicitudes
     private notify: NotificationService,          // mensajes UI
-    private userService: UserService              // usuario actual
+    private userService: UserService,             // usuario actual
+    private router: Router
   ) {}
 
   // Al iniciar, carga beneficios
@@ -177,6 +179,8 @@ export class VacacionesComponent implements OnInit {
             : 'No se pudo crear la solicitud';
 
         this.notify.error(msg);
+
+        this.cargarBeneficios();
       }
     });
   }

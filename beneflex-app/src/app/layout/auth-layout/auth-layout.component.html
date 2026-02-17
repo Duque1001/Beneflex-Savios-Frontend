@@ -1,7 +1,26 @@
-<app-header></app-header>
+<!-- <app-header></app-header>
 
 <div class="main-layout">
   <app-sidebar></app-sidebar>
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div> -->
+
+<app-header (menuToggle)="toggleSidebar()"></app-header>
+
+<!-- Backdrop para cerrar el menú en móvil -->
+<div
+  class="backdrop"
+  [class.show]="sidebarOpen"
+  (click)="closeSidebar()"
+></div>
+
+<div class="main-layout">
+  <div class="sidebar-wrapper" [class.open]="sidebarOpen">
+    <app-sidebar (linkClicked)="onSidebarLinkClicked()"></app-sidebar>
+  </div>
+
   <main class="content">
     <router-outlet></router-outlet>
   </main>

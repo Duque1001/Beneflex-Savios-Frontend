@@ -17,13 +17,13 @@ import { environment } from '../../../environments/environment';
 export class BenefitRequestsService {
 
   // URL de la API que devuelve las solicitudes del usuario, viene desde environment para poder cambiar entre dev/prod.
-  //private myRequestsUrl = environment.backendBaseUrl;
+  private myRequestsUrl = environment.myRequestsApiUrl;
 
   // Inyección de HttpClient
   constructor(private http: HttpClient) {}
 
   // Obtiene las solicitudes del usuario logueado, no recibe userId porque el backend lo extrae del token.
   getMyRequests(): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.backendBaseUrl}/api/my-requests`);
+    return this.http.get<any[]>(this.myRequestsUrl);
   }
 }

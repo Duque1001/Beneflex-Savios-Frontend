@@ -38,15 +38,15 @@ export class RequestsService {
 
   constructor(private http: HttpClient) {}
 
-  private readonly apiBase = `${environment.backendBaseUrl}/api`;
-
   // Obtiene las solicitudes del usuario, envía el userId como parámetro en la URL
   getMyRequests(userId: number): Observable<MyRequest[]> {
     const params = new HttpParams().set('userId', String(userId));
-    return this.http.get<MyRequest[]>(`${this.apiBase}/my-requests`, { params });
+
+    return this.http.get<MyRequest[]>(
+      environment.myRequestsApiUrl,
+      { params }
+    );
   }
-
-
 
   // Actualiza el estado de una solicitud (aprobar, rechazar, cancelar), se envía el payload por POST al backend.
   updateRequestStatus(
@@ -57,6 +57,9 @@ export class RequestsService {
     }
   ): Observable<any> {
 
-    return this.http.post(`${this.apiBase}/update-request-status`, payload);
+    return this.http.post(
+      environment.updateRequestStatusApiUrl,
+      payload
+    );
   }
 }

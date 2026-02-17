@@ -1,5 +1,5 @@
-<nav class="sidebar">
-  <!-- Link: Beneficios (ruta exacta /app) -->
+<!-- <nav class="sidebar">
+
   <a
     routerLink="/app"
     routerLinkActive="active"
@@ -8,7 +8,7 @@
     Beneficios
   </a>
 
-  <!-- Link: Mis Solicitudes -->
+
   <a
     routerLink="/app/mis-solicitudes"
     routerLinkActive="active"
@@ -17,7 +17,7 @@
     Mis Solicitudes
   </a>
 
-  <!-- Link: Aprobaciones (solo líder) -->
+
   <a
     *ngIf="userService.isLeader()"
     routerLink="/app/aprobaciones"
@@ -26,4 +26,35 @@
   >
     Aprobaciones
   </a>
+</nav> -->
+
+<nav class="sidebar">
+  <a
+    routerLink="/app"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    (click)="linkClicked.emit()"
+  >
+    Beneficios
+  </a>
+
+  <a
+    routerLink="/app/mis-solicitudes"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    (click)="linkClicked.emit()"
+  >
+    Mis Solicitudes
+  </a>
+
+  <a
+    *ngIf="userService.isLeader()"
+    routerLink="/app/aprobaciones"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    (click)="linkClicked.emit()"
+  >
+    Aprobaciones
+  </a>
 </nav>
+

@@ -37,7 +37,7 @@ export class BeneficiosService {
     }
 
     // Construye la URL con query param
-    const url = `${environment.backendBaseUrl}/api/benefits?userId=${userId}`;
+    const url = `${environment.benefitsApiUrl}?userId=${userId}`;
 
     return this.http.get(url);
   }
@@ -52,8 +52,11 @@ export class BeneficiosService {
     }
 
     return this.http.post(
-      `${environment.backendBaseUrl}/api/benefit-requests`,
-      { userId, ...data }
+      environment.createBenefitApiUrl,
+      {
+        userId,
+        ...data // spread operator: agrega el resto de campos
+      }
     );
   }
 }

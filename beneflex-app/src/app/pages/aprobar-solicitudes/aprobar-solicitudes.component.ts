@@ -17,6 +17,7 @@ import { NotificationService } from '../../shared/services/notification.service'
 
 // Utilidad que mapea nombre del beneficio ruta del ícono.
 import { benefitIconSrc } from '../../shared/utils/benefit-icon.util';
+import { Router } from '@angular/router';
 
 // Modelo para la UI (formato limpio para mostrar en pantalla), convierte nombres, fechas, nulls, íconos, etc.
 type PendingRequestUI = {
@@ -56,7 +57,8 @@ export class AprobarSolicitudesComponent implements OnInit {
 
   constructor(
     private service: ApprovalRequestsService,   // API approvals
-    private notify: NotificationService         // mensajes UI
+    private notify: NotificationService,        // mensajes UI
+    private router: Router
   ) {}
 
   // Al iniciar el componente, carga pendientes
@@ -225,11 +227,37 @@ export class AprobarSolicitudesComponent implements OnInit {
 
         this.comentario = '';
       },
-      error: (err: any) => {
+      /*error: (err: any) => {
         console.error('Error actualizando estado', err);
         this.cargando = false;
         this.closeConfirm();
         this.notify.error('No se pudo actualizar el estado de la solicitud');
+      }*/
+      error: (err: any) => {
+        console.error('Error actualizando estado', err);
+
+        // status 0 suele ser red/CORS (request ni llega al backend)
+        if (err?.status === 0) {
+          this.notify.error('Bloqueado por CORS o red');
+          return;
+        }
+
+        // Intenta extraer mensaje útil del backend (Azure Function)
+        const backendMsg =
+          err?.error?.message ||
+          err?.error?.error?.message ||
+          err?.error?.error ||
+          err?.error ||
+          null;
+
+        const msg =
+          (typeof backendMsg === 'string' && backendMsg.trim().length > 0)
+            ? backendMsg
+            : 'No se pudo actualizar el estado de la solicitud';
+
+        this.notify.error(msg);
+
+        this.cargarPendientes();
       }
     });
   }

@@ -1,4 +1,4 @@
-.main-layout {
+/* .main-layout {
   display: flex;
   height: calc(100vh - 60px);
 }
@@ -6,4 +6,72 @@
   flex: 1;
   padding: 20px;
   background: #f7f7f7;
+} */
+
+.main-layout {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+.sidebar-wrapper {
+  flex: 0 0 auto;
+}
+
+.backdrop {
+  display: none;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  background: #f7f7f7;
+  min-width: 0; /* evita overflow en grids */
+}
+
+/* Tablet: reduce un poco el padding */
+@media (max-width: 992px) {
+  .content {
+    padding: 16px;
+  }
+}
+
+/* Telefono/Tablet pequeña: sidebar tipo drawer */
+@media (max-width: 768px) {
+  .content {
+    padding: 12px;
+  }
+
+  .sidebar-wrapper {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    transform: translateX(-110%);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .sidebar-wrapper.open {
+    transform: translateX(0);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  }
+
+  .backdrop {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+    display: block;
+  }
+
+  .backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }

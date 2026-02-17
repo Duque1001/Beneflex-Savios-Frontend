@@ -1,4 +1,4 @@
-.card {
+/* .card {
   background: white;
   border: 1px solid #ddd;
   padding: 20px;
@@ -21,6 +21,60 @@
 .days {
   font-size: 24px;
   font-weight: bold;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+} */
+
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  border-radius: 12px;
+}
+
+.icon-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.icon {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.days {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 16px;
+  }
+  .icon {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 14px;
+  }
+  .icon {
+    width: 88px;
+    height: 88px;
+  }
+  .days {
+    font-size: 22px;
+  }
 }
 
 button:disabled {

@@ -1,12 +1,14 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { BenefitsService } from './benefits.service';
+// import { BenefitCardDto } from './dto/benefitCard.dto';
 
-@Controller('api')
+@Controller('benefits')
 export class BenefitsController {
   constructor(private readonly benefitsService: BenefitsService) {}
 
-  @Get('benefits')
-  getUserBenefits(@Query('userId') userId: string) {
-    return this.benefitsService.getBenefitsForUser(Number(userId));
+  @Get('user/:userId')
+  getUserBenefits(@Param('userId') userId: number) {
+    const year = new Date().getFullYear();
+    return this.benefitsService.getBenefitsForUser(userId, year);
   }
 }
