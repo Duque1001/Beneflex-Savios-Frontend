@@ -15,7 +15,7 @@ import { environment } from '../../../environments/environment';
 export class BenefitsService {
 
   // Construye la URL base del endpoint de beneficios.
-  private apiUrl = `${environment.benefitsApiUrl}/benefits`;
+  private apiUrl = `${environment.backendBaseUrl}/benefits`;
 
   // Inyección de HttpClient
   constructor(private http: HttpClient) {}

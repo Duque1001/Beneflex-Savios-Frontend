@@ -23,7 +23,7 @@ import { Beneficio } from './models/beneficio.model';
 export class ApiService {
 
   // URL base de la API
-  private baseUrl = environment.benefitsApiUrl;
+  private baseUrl = environment.backendBaseUrl;
 
   // Inyección de HttpClient
   constructor(private http: HttpClient) { }

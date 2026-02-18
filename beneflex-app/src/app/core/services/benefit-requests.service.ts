@@ -17,7 +17,7 @@ import { environment } from '../../../environments/environment';
 export class BenefitRequestsService {
 
   // URL de la API que devuelve las solicitudes del usuario, viene desde environment para poder cambiar entre dev/prod.
-  private myRequestsUrl = environment.myRequestsApiUrl;
+  private myRequestsUrl = environment.backendBaseUrl;
 
   // Inyección de HttpClient
   constructor(private http: HttpClient) {}

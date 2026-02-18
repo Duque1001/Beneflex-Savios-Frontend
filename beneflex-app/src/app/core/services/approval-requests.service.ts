@@ -43,7 +43,7 @@ export class ApprovalRequestsService {
   // Obtiene todas las solicitudes pendientes desde la API.
   getPendientes(): Observable<PendingRequestApi[]> {
     return this.http.get<PendingRequestApi[]>(
-      environment.pendingRequestsApiUrl
+      environment.backendBaseUrl
     );
   }
 
@@ -53,7 +53,7 @@ export class ApprovalRequestsService {
   ): Observable<any> {
 
     return this.http.post(
-      environment.updateRequestStatusApiUrl,
+      environment.backendBaseUrl,
       payload
     );
   }

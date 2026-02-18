@@ -43,7 +43,7 @@ export class RequestsService {
     const params = new HttpParams().set('userId', String(userId));
 
     return this.http.get<MyRequest[]>(
-      environment.myRequestsApiUrl,
+      environment.backendBaseUrl,
       { params }
     );
   }
@@ -58,7 +58,7 @@ export class RequestsService {
   ): Observable<any> {
 
     return this.http.post(
-      environment.updateRequestStatusApiUrl,
+      environment.backendBaseUrl,
       payload
     );
   }
