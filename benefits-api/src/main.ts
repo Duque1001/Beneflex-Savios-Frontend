@@ -32,14 +32,11 @@ async function bootstrap() {
   );
 
   app.enableCors({
-    origin: ['https://calm-rock-0ddd0211e.6.azurestaticapps.net', 'http://localhost:4200'],
-    credentials: false,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type',
-      'Authorization',
-      'authorization',
-      'X-Requested-With',
+    origin: [
+      'https://calm-rock-0ddd0211e.6.azurestaticapps.net',
+      'http://localhost:4200',
     ],
+    credentials: false,
   });
 
   const port = process.env.PORT ? Number(process.env.PORT) : 3000;

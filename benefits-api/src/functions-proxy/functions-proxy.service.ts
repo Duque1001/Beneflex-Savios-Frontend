@@ -3,20 +3,21 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class FunctionsProxyService {
   private baseUrl = process.env.FUNCTIONS_BASE_URL!;
-  private fxKey = process.env.FUNCTIONS_KEY; // opcional
 
-  async getMe(accessToken: string) {
-    const url = `${this.baseUrl}/get-me`;
+  async callFunction(path: string, token: string, body?: any) {
+    const response = await fetch(`${this.baseUrl}/${path}`, {
+      method: body ? 'POST' : 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    });
 
-    const headers: Record<string, string> = {
-      Authorization: `Bearer ${accessToken}`,
-    };
+    if (!response.ok) {
+      throw new Error(`Function error ${response.status}`);
+    }
 
-    // Si proteges Functions con key:
-    if (this.fxKey) headers['x-functions-key'] = this.fxKey;
-
-    const r = await fetch(url, { headers });
-    if (!r.ok) throw new Error(`Functions get-me failed: ${r.status}`);
-    return r.json();
+    return response.json();
   }
 }
