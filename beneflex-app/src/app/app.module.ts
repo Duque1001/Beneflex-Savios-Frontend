@@ -88,7 +88,11 @@ export function msalInterceptorConfigFactory(): MsalInterceptorConfiguration {
 
   // Cuando la app llame a esta base URL, MSAL adjunta token
   // protectedResourceMap.set(environment.functionsApiBaseUrl, ['openid', 'profile', 'email']);
-  protectedResourceMap.set(environment.backendOrigin, ['openid', 'profile', 'email']);
+  protectedResourceMap.set(
+    'https://beneflex-savios-backend-facxcadmesfcekbz.westcentralus-01.azurewebsites.net',
+    ['openid', 'profile', 'email']
+  );
+
 
 
   return {

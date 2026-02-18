@@ -31,33 +31,15 @@ async function bootstrap() {
       .filter((x): x is string => typeof x === 'string'),
   );
 
-  type CorsCallback = (err: Error | null, allow?: boolean) => void;
-
   app.enableCors({
-    origin: (origin: string | undefined, callback: CorsCallback) => {
-      // Permite requests sin Origin (server-to-server / health checks)
-      if (!origin) {
-        callback(null, true);
-        return;
-      }
-
-      const normalized = normalizeOrigin(origin);
-
-      if (normalized && allowedOrigins.has(normalized)) {
-        callback(null, true);
-        return;
-      }
-      callback(new Error(`CORS blocked for origin: ${origin}`));
-    },
-    credentials: true,
+    origin: ['https://calm-rock-0ddd0211e.6.azurestaticapps.net', 'http://localhost:4200'],
+    credentials: false,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: [
-      'Content-Type',
+    allowedHeaders: ['Content-Type',
       'Authorization',
       'authorization',
       'X-Requested-With',
     ],
-    optionsSuccessStatus: 204,
   });
 
   const port = process.env.PORT ? Number(process.env.PORT) : 3000;

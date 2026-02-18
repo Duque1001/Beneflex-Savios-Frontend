@@ -1,74 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { HttpService } from '@nestjs/axios';
-import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class FunctionsProxyService {
-  constructor(private readonly http: HttpService) {}
+  private baseUrl = process.env.FUNCTIONS_BASE_URL!;
+  private fxKey = process.env.FUNCTIONS_KEY; // opcional
 
-  private get baseUrl() {
-    const base =
-      process.env.FUNCTIONS_BASE_URL || process.env.FUNCTIONS_API_BASE_URL;
+  async getMe(accessToken: string) {
+    const url = `${this.baseUrl}/get-me`;
 
-    if (!base) {
-      throw new Error('Missing environment variable: FUNCTIONS_BASE_URL');
-    }
-    return base;
-  }
+    const headers: Record<string, string> = {
+      Authorization: `Bearer ${accessToken}`,
+    };
 
-  async getMe(auth?: string) {
-    const r = await firstValueFrom(
-      this.http.get(`${this.baseUrl}/get-me`, {
-        headers: auth ? { Authorization: auth } : {},
-      }),
-    );
-    return r.data;
-  }
+    // Si proteges Functions con key:
+    if (this.fxKey) headers['x-functions-key'] = this.fxKey;
 
-  async getUserBenefits(userId: string, auth?: string) {
-    const r = await firstValueFrom(
-      this.http.get(`${this.baseUrl}/get-user-benefits`, {
-        params: { userId },
-        headers: auth ? { Authorization: auth } : {},
-      }),
-    );
-    return r.data;
-  }
-
-  async createBenefitRequest(body: any, auth?: string) {
-    const r = await firstValueFrom(
-      this.http.post(`${this.baseUrl}/create-benefit-request`, body, {
-        headers: auth ? { Authorization: auth } : {},
-      }),
-    );
-    return r.data;
-  }
-
-  async getMyRequests(userId?: string, auth?: string) {
-    const r = await firstValueFrom(
-      this.http.get(`${this.baseUrl}/get-my-requests`, {
-        params: userId ? { userId } : {},
-        headers: auth ? { Authorization: auth } : {},
-      }),
-    );
-    return r.data;
-  }
-
-  async getPendingRequests(auth?: string) {
-    const r = await firstValueFrom(
-      this.http.get(`${this.baseUrl}/get-pending-requests`, {
-        headers: auth ? { Authorization: auth } : {},
-      }),
-    );
-    return r.data;
-  }
-
-  async updateRequestStatus(body: any, auth?: string) {
-    const r = await firstValueFrom(
-      this.http.post(`${this.baseUrl}/update-request-status`, body, {
-        headers: auth ? { Authorization: auth } : {},
-      }),
-    );
-    return r.data;
+    const r = await fetch(url, { headers });
+    if (!r.ok) throw new Error(`Functions get-me failed: ${r.status}`);
+    return r.json();
   }
 }
