@@ -3,6 +3,7 @@ export const environment = {
 
   // BACKEND en Azure (App Service):
   functionsApiBaseUrl: 'https://beneflex-savios-backend-facxcadmesfcekbz.westcentralus-01.azurewebsites.net/api',
+  backendOrigin: 'https://beneflex-savios-backend-facxcadmesfcekbz.westcentralus-01.azurewebsites.net',
 
   meApiUrl: 'https://beneflex-savios-backend-facxcadmesfcekbz.westcentralus-01.azurewebsites.net/api/get-me',
   benefitsApiUrl: 'https://beneflex-savios-backend-facxcadmesfcekbz.westcentralus-01.azurewebsites.net/api/get-user-benefits',

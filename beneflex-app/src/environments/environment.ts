@@ -3,6 +3,8 @@ export const environment = {
 
   // BACKEND (App Service) local:
   functionsApiBaseUrl: 'http://localhost:3000/api',
+  backendOrigin: 'http://localhost:3000/api',
+
 
   // Apuntar al BACKEND
   meApiUrl: 'http://localhost:3000/api/get-me',
